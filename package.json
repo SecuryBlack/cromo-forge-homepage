@@ -2,7 +2,7 @@
   "name": "cromo-forge-homepage",
   "version": "0.1.0",
   "private": true,
-  "description": "Landing page oficial de cromo-forge (SecuryBlack)",
+  "description": "Official landing page for cromo-forge (SecuryBlack)",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
