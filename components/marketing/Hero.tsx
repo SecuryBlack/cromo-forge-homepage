@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import { activeAgentConfig } from "@/config/agent.config";
 import { Badge } from "@/components/catalyst/badge";
-import { ProductShowcase } from "./ProductShowcase";
+import { track } from "@/lib/analytics";
+import { useLatestRelease } from "@/lib/useLatestRelease";
 import { Copy, Check, Terminal as TerminalIcon, Sparkles } from "lucide-react";
 
 export function Hero() {
@@ -11,9 +12,12 @@ export function Hero() {
   const [copied, setCopied] = useState(false);
 
   const activeCommand = activeAgentConfig.installCommands[activeOsIndex] || activeAgentConfig.installCommands[0];
+  const version = useLatestRelease().replace(/^v/, "");
+  const cmd = activeCommand.cmd.replaceAll("{version}", version);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(activeCommand.cmd);
+    navigator.clipboard.writeText(cmd);
+    track("install_command_copy", { os: activeCommand.os.toLowerCase() });
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -64,6 +68,25 @@ export function Hero() {
           ))}
         </div>
 
+        {activeAgentConfig.statsFootnote && (
+          <p className="mt-3 text-[11px] text-zinc-500 dark:text-zinc-400 max-w-3xl">
+            {activeAgentConfig.statsFootnote}
+            {activeAgentConfig.statsSourceUrl && (
+              <>
+                {" "}
+                <a
+                  href={activeAgentConfig.statsSourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-2 hover:text-zinc-700 dark:hover:text-zinc-200"
+                >
+                  Method and script
+                </a>
+              </>
+            )}
+          </p>
+        )}
+
         {/* Quick Install Command Box (Catalyst Terminal Style) */}
         <div className="w-full max-w-2xl mt-8">
           <div className="rounded-xl border border-zinc-300/80 dark:border-zinc-800 bg-zinc-950 text-white shadow-xl overflow-hidden text-left">
@@ -84,16 +107,21 @@ export function Hero() {
                   </button>
                 ))}
               </div>
-              <span className="text-[11px] text-zinc-400 font-mono hidden sm:inline">
-                Zero external dependencies
-              </span>
+              <a
+                href="https://github.com/securyblack/cromo-forge/blob/master/scripts/install.sh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[11px] text-zinc-400 hover:text-zinc-200 font-mono hidden sm:inline"
+              >
+                Read the script first
+              </a>
             </div>
 
             {/* Code Line */}
             <div className="p-3.5 flex items-center justify-between gap-3">
               <div className="flex items-center gap-x-2 text-xs sm:text-sm font-mono text-zinc-200 truncate select-all">
                 <TerminalIcon className="size-4 text-[var(--agent-primary-light)] shrink-0" />
-                <span className="truncate">{activeCommand.cmd}</span>
+                <span className="truncate">{cmd}</span>
               </div>
               <button
                 onClick={handleCopy}
@@ -107,11 +135,28 @@ export function Hero() {
                 )}
               </button>
             </div>
+            {activeCommand.note && (
+              <div className="px-3.5 pb-3 -mt-1 text-[11px] text-zinc-400 leading-relaxed">
+                {activeCommand.note}
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Interactive Product Showcase (TUI Simulator) */}
-        <ProductShowcase />
+        {/* Real stages: the ones deploy_app reports to the panel */}
+        <div className="w-full max-w-3xl mt-10 text-left">
+          <div className="text-xs text-zinc-500 dark:text-zinc-400 mb-2">
+            Stages of a web app deploy, as the agent reports them to the panel
+          </div>
+          <pre className="rounded-xl border border-zinc-300/80 dark:border-zinc-800 bg-zinc-950 text-zinc-200 p-4 text-[11px] sm:text-xs font-mono overflow-x-auto leading-relaxed">
+{`fetch        Downloading source code
+build        Building image
+start        Starting container
+healthcheck  Checking the new version
+switch       Switching traffic
+cleanup      Stopping the previous version`}
+          </pre>
+        </div>
       </div>
     </section>
   );

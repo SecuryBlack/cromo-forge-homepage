@@ -1,16 +1,21 @@
 import type { Metadata } from "next";
 import { activeAgentConfig } from "@/config/agent.config";
+import { Analytics } from "@/components/Analytics";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: `${activeAgentConfig.name} — ${activeAgentConfig.tagline}`,
+  metadataBase: new URL("https://cromoforge.dev"),
+  title: `${activeAgentConfig.name}: ${activeAgentConfig.tagline}`,
   description: activeAgentConfig.description,
-  icons: {
-    icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico", sizes: "any" },
-    ],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: activeAgentConfig.name,
+    title: `${activeAgentConfig.name}: ${activeAgentConfig.tagline}`,
+    description: activeAgentConfig.description,
   },
+  twitter: { card: "summary" },
 };
 
 export default function RootLayout({
@@ -52,6 +57,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-zinc-50 text-zinc-900 dark:bg-[#09090b] dark:text-zinc-100 flex flex-col justify-between selection:bg-[var(--agent-primary)] selection:text-zinc-950">
         {children}
+        <Analytics />
       </body>
     </html>
   );
