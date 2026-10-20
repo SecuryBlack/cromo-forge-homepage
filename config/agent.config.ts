@@ -136,10 +136,10 @@ export const cromoForgeConfig: AgentConfig = {
   binaryName: "cromoforge",
   productTitle: "CromoForge — Deploy agent for your own servers",
   badge: "Open source · Apache 2.0 · Rust",
-  version: "v0.2.0",
+  version: "v0.3.0",
   tagline: "Deploy from GitHub to your own server",
   description:
-    "A small Rust agent for the SecuryBlack panel. It builds your GitHub repository on your server with Railpack, starts it after a healthcheck and serves it on your domain over HTTPS. It also handles Docker containers and day-to-day PostgreSQL tasks. GitHub deploys are in early access.",
+    "A small Rust agent for the SecuryBlack panel. It builds your GitHub repository on your server with Railpack, starts it after a healthcheck and serves it on your domains over HTTPS. It also handles Docker containers and day-to-day PostgreSQL tasks. GitHub deploys are in early access.",
   theme: {
     primary: "#6366F1", // Indigo / Chrome
     primaryDark: "#4F46E5",
@@ -175,10 +175,10 @@ export const cromoForgeConfig: AgentConfig = {
     },
     {
       id: "https",
-      title: "Your domain, with HTTPS",
+      title: "Your domains, with HTTPS",
       subtitle: "Managed Caddy",
       description:
-        "Installs a Caddy container and routes each web app's domain to it, with certificates from Let's Encrypt. Routes go through Caddy's local admin API, never a hand-edited Caddyfile.",
+        "Installs a Caddy container and routes each web app's domains to it, with certificates from Let's Encrypt. Extra domains can redirect to the main one (www ↔ apex) or serve the app too. Routes go through Caddy's local admin API, never a hand-edited Caddyfile.",
       colSpan: "col-span-1",
       tag: "Proxy",
     },
@@ -227,7 +227,7 @@ export const cromoForgeConfig: AgentConfig = {
       competitors: "Depends on the provider",
     },
     {
-      feature: "Custom domain and HTTPS",
+      feature: "Custom domains, www redirect and HTTPS",
       agent: "Caddy with Let's Encrypt, set up by the agent",
       bashScript: "Set up by hand",
       competitors: "Included",

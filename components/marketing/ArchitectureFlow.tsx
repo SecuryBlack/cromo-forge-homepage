@@ -30,7 +30,7 @@ const steps = [
     step: "04",
     icon: Globe,
     title: "Switch",
-    desc: "Points the app's domain to the new container in Caddy, with HTTPS from Let's Encrypt, then stops the previous version. Recent images stay on the host for rollbacks.",
+    desc: "Points the app's domains to the new container in Caddy, with HTTPS from Let's Encrypt, then stops the previous version. Recent images stay on the host for rollbacks.",
     tag: "Caddy",
   },
 ];
