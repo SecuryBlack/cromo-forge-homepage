@@ -98,7 +98,7 @@ export const ecosystemAgents: EcosystemAgent[] = [
     id: "titanvault",
     name: "TitanVault",
     role: "Backups",
-    tagline: "Scheduled backups for databases and configuration.",
+    tagline: "Scheduled PostgreSQL and file backups to S3-compatible storage.",
     url: "https://titanvault.dev",
     githubUrl: "https://github.com/securyblack/titan-vault",
     color: "#06B6D4",
@@ -139,7 +139,7 @@ export const cromoForgeConfig: AgentConfig = {
   version: "v0.3.0",
   tagline: "Deploy from GitHub to your own server",
   description:
-    "A small Rust agent for the SecuryBlack panel. It builds your GitHub repository on your server with Railpack, starts it after a healthcheck and serves it on your domains over HTTPS. It also handles Docker containers and day-to-day PostgreSQL tasks. GitHub deploys are in early access.",
+    "A small Rust agent for the SecuryBlack panel. It builds your GitHub repository on your server with Railpack, starts it after a healthcheck and serves it on your domains over HTTPS. It also handles Docker containers and day-to-day PostgreSQL tasks. GitHub deploys are in beta and free while the beta lasts.",
   theme: {
     primary: "#6366F1", // Indigo / Chrome
     primaryDark: "#4F46E5",
@@ -167,7 +167,7 @@ export const cromoForgeConfig: AgentConfig = {
     {
       id: "deploys",
       title: "Deploy from GitHub",
-      subtitle: "Early access",
+      subtitle: "Beta",
       description:
         "Connect a repository in the SecuryBlack panel and deploy on push or by hand. CromoForge fetches that commit, builds it with Railpack on your server and streams the build log to the panel. Web apps, background workers and cron jobs (5-field schedule, UTC).",
       colSpan: "col-span-2",

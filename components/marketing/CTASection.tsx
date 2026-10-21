@@ -23,7 +23,7 @@ export function CTASection() {
           </h2>
           <p className="mt-4 text-zinc-600 dark:text-zinc-400 text-sm sm:text-base">
             Add a server in the SecuryBlack panel, install CromoForge with the command it gives you and
-            deploy a repository. GitHub deploys are in early access.
+            deploy a repository. GitHub deploys are in beta and free while the beta lasts.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
