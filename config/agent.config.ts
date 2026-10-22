@@ -154,7 +154,7 @@ export const cromoForgeConfig: AgentConfig = {
       os: "Linux",
       cmd: "curl -fsSL https://install.cromoforge.dev | sudo bash -s -- --token <TOKEN>",
       badge: "Recommended",
-      note: "You normally copy this command, with your server token, from the SecuryBlack panel at app.securyblack.com. Deploys need Docker Engine with the buildx plugin; the script installs Railpack but not Docker.",
+      note: "You normally copy this command, with your server token, from the SecuryBlack panel at app.securyblack.com. Deploys need Docker Engine with the buildx plugin: if Docker is missing the script installs it, along with Railpack (--no-docker skips it).",
     },
   ],
   stats: [
@@ -248,7 +248,7 @@ export const cromoForgeConfig: AgentConfig = {
     {
       question: "What does a server need for deploys?",
       answer:
-        "Linux with systemd, x86_64 or arm64, and Docker Engine with the buildx plugin. The install script adds Railpack (pinned version, checksum verified) and warns if Docker or buildx are missing. The agent creates the BuildKit and Caddy containers it uses.",
+        "Linux with systemd, x86_64 or arm64, and Docker Engine with the buildx plugin. The install script adds Railpack (pinned version, checksum verified) and installs Docker with buildx if it's missing, from the distro's packages or get.docker.com; --no-docker skips it. The agent creates the BuildKit and Caddy containers it uses.",
     },
     {
       question: "What happens if a deploy fails?",
