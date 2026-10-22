@@ -136,7 +136,7 @@ export const cromoForgeConfig: AgentConfig = {
   binaryName: "cromoforge",
   productTitle: "CromoForge — Deploy agent for your own servers",
   badge: "Open source · Apache 2.0 · Rust",
-  version: "v0.3.0",
+  version: "v0.4.0",
   tagline: "Deploy from GitHub to your own server",
   description:
     "A small Rust agent for the SecuryBlack panel. It builds your GitHub repository on your server with Railpack, starts it after a healthcheck and serves it on your domains over HTTPS. It also handles Docker containers and day-to-day PostgreSQL tasks. GitHub deploys are in beta and free while the beta lasts.",
@@ -196,7 +196,7 @@ export const cromoForgeConfig: AgentConfig = {
       title: "Containers and PostgreSQL",
       subtitle: "Day-to-day tasks",
       description:
-        "List, start, stop and restart Docker containers and read their logs. For PostgreSQL, on the host or in a container: connections, size, cache hit ratio, slow and active queries, table bloat and unused indexes, plus cancel, terminate, vacuum, reindex and install-extension actions.",
+        "List, start, stop and restart Docker containers, see CPU and memory per container and follow logs live, one container or a whole Compose project merged by time. For PostgreSQL, on the host or in a container: connections, size, cache hit ratio, slow and active queries, table bloat and unused indexes, plus cancel, terminate, vacuum, reindex and install-extension actions.",
       colSpan: "col-span-2",
       tag: "Operations",
     },
