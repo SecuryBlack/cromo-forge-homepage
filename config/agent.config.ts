@@ -136,10 +136,10 @@ export const cromoForgeConfig: AgentConfig = {
   binaryName: "cromoforge",
   productTitle: "CromoForge — Deploy agent for your own servers",
   badge: "Open source · Apache 2.0 · Rust",
-  version: "v0.4.0",
+  version: "v0.7.0",
   tagline: "Deploy from GitHub to your own server",
   description:
-    "A small Rust agent for the SecuryBlack panel. It builds your GitHub repository on your server with Railpack, starts it after a healthcheck and serves it on your domains over HTTPS. It also handles Docker containers and day-to-day PostgreSQL tasks. GitHub deploys are in beta and free while the beta lasts.",
+    "A small Rust agent for the SecuryBlack panel. It builds your GitHub repository on your server with Railpack or your Dockerfile, or runs a one-click template such as Umami or n8n, starts it after a healthcheck and serves it on your domains over HTTPS. It also handles Docker containers and day-to-day PostgreSQL tasks. GitHub deploys are in beta and free while the beta lasts.",
   theme: {
     primary: "#6366F1", // Indigo / Chrome
     primaryDark: "#4F46E5",
@@ -159,7 +159,7 @@ export const cromoForgeConfig: AgentConfig = {
   ],
   stats: [
     { label: "App types", value: "3", note: "Web, worker, cron" },
-    { label: "Build", value: "Railpack", note: "On your server, via BuildKit" },
+    { label: "Build", value: "Railpack", note: "Or your Dockerfile, via BuildKit" },
     { label: "HTTPS", value: "Automatic", note: "Caddy + Let's Encrypt" },
     { label: "Rollback", value: "No rebuild", note: "Last 3 images kept" },
   ],
@@ -169,7 +169,7 @@ export const cromoForgeConfig: AgentConfig = {
       title: "Deploy from GitHub",
       subtitle: "Beta",
       description:
-        "Connect a repository in the SecuryBlack panel and deploy on push or by hand. CromoForge fetches that commit, builds it with Railpack on your server and streams the build log to the panel. Web apps, background workers and cron jobs (5-field schedule, UTC).",
+        "Connect a repository in the SecuryBlack panel and deploy on push or by hand. CromoForge fetches that commit, builds it on your server with Railpack or your own Dockerfile, from the repo root or a monorepo folder, and streams the build log to the panel. Web apps, background workers and cron jobs (5-field schedule, UTC).",
       colSpan: "col-span-2",
       tag: "Deploys",
     },
@@ -192,6 +192,24 @@ export const cromoForgeConfig: AgentConfig = {
       tag: "Operations",
     },
     {
+      id: "templates",
+      title: "One-click templates",
+      subtitle: "Umami, Plausible, n8n, Uptime Kuma",
+      description:
+        "Pick a template, a server and a domain. CromoForge pulls the official image, starts its database next to it on a private Docker network with no published ports, and serves it over HTTPS. Passwords and keys are generated when the app is created and stored encrypted in the panel.",
+      colSpan: "col-span-2",
+      tag: "Templates",
+    },
+    {
+      id: "volumes",
+      title: "Data that survives deploys",
+      subtitle: "Persistent volumes",
+      description:
+        "Mark up to five paths per app as persistent: each one becomes a named Docker volume kept across deploys and updates. Apps with volumes stop the old version before starting the new one, and start it again if the new one fails.",
+      colSpan: "col-span-1",
+      tag: "Data",
+    },
+    {
       id: "postgres",
       title: "Containers and PostgreSQL",
       subtitle: "Day-to-day tasks",
@@ -210,7 +228,7 @@ export const cromoForgeConfig: AgentConfig = {
     },
     {
       feature: "Build",
-      agent: "Railpack on your server, BuildKit capped at half the CPUs",
+      agent: "Railpack or your Dockerfile on your server, BuildKit capped at half the CPUs",
       bashScript: "Whatever you script",
       competitors: "The provider's builders",
     },
@@ -231,6 +249,12 @@ export const cromoForgeConfig: AgentConfig = {
       agent: "Caddy with Let's Encrypt, set up by the agent",
       bashScript: "Set up by hand",
       competitors: "Included",
+    },
+    {
+      feature: "Persistent data",
+      agent: "Named Docker volumes, kept across deploys",
+      bashScript: "Set up by hand",
+      competitors: "Depends on the provider",
     },
     {
       feature: "Rollback",
