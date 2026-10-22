@@ -9,21 +9,21 @@ const steps = [
     step: "01",
     icon: Download,
     title: "Fetch",
-    desc: "Downloads the tarball of the exact commit from the GitHub API, with a token the panel sends for that deploy.",
+    desc: "Downloads the tarball of the exact commit from the GitHub API, with a token the panel sends for that deploy. Templates pull their official image instead.",
     tag: "GitHub",
   },
   {
     step: "02",
     icon: Hammer,
     title: "Build",
-    desc: "Builds the image with Railpack against a local BuildKit container capped at half the CPUs and up to 4 GB of RAM. Build logs stream to the panel and the cache is pruned after each build.",
+    desc: "Builds the image with Railpack or your Dockerfile against a local BuildKit container capped at half the CPUs and up to 4 GB of RAM. Build logs stream to the panel and the cache is pruned after each build.",
     tag: "Railpack",
   },
   {
     step: "03",
     icon: CheckCircle2,
     title: "Check",
-    desc: "Starts the new container next to the old one. Web apps must answer an HTTP healthcheck; workers must stay up 30 s without restarts. If the check fails, the new container is removed and the old one keeps running.",
+    desc: "Starts the new container next to the old one (apps with volumes stop the old one first). Web apps must answer an HTTP healthcheck; workers must stay up 30 s without restarts. If the check fails, the new container is removed and the old one keeps running.",
     tag: "Healthcheck",
   },
   {
@@ -47,7 +47,7 @@ export function ArchitectureFlow() {
           From a commit to a running app
         </h2>
         <p className="mt-4 text-zinc-600 dark:text-zinc-400 text-sm sm:text-base">
-          The whole agent is under 3,000 lines of Rust. Read it on GitHub.
+          The whole agent is a few thousand lines of Rust. Read it on GitHub.
         </p>
       </div>
 
