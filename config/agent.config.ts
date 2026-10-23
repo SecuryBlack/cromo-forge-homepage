@@ -136,7 +136,7 @@ export const cromoForgeConfig: AgentConfig = {
   binaryName: "cromoforge",
   productTitle: "CromoForge — Deploy agent for your own servers",
   badge: "Open source · Apache 2.0 · Rust",
-  version: "v0.7.0",
+  version: "v0.7.1",
   tagline: "Deploy from GitHub to your own server",
   description:
     "A small Rust agent for the SecuryBlack panel. It builds your GitHub repository on your server with Railpack or your Dockerfile, or runs a one-click template such as Umami or n8n, starts it after a healthcheck and serves it on your domains over HTTPS. It also handles Docker containers and day-to-day PostgreSQL tasks. GitHub deploys are in beta and free while the beta lasts.",
