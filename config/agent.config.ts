@@ -136,10 +136,10 @@ export const cromoForgeConfig: AgentConfig = {
   binaryName: "cromoforge",
   productTitle: "CromoForge — Deploy agent for your own servers",
   badge: "Open source · Apache 2.0 · Rust",
-  version: "v0.7.1",
+  version: "v0.7.2",
   tagline: "Deploy from GitHub to your own server",
   description:
-    "A small Rust agent for the SecuryBlack panel. It builds your GitHub repository on your server with Railpack or your Dockerfile, or runs a one-click template such as Umami or n8n, starts it after a healthcheck and serves it on your domains over HTTPS. It also handles Docker containers and day-to-day PostgreSQL tasks. GitHub deploys are in beta and free while the beta lasts.",
+    "A small Rust agent for the SecuryBlack panel. It builds your GitHub repository on your server with Railpack or your Dockerfile, or runs a one-click template such as Umami or n8n, starts it after a healthcheck and serves it on your domains over HTTPS. It also runs PostgreSQL and Redis, for an app or on their own, and handles Docker containers and day-to-day PostgreSQL tasks. GitHub deploys are in beta and free while the beta lasts.",
   theme: {
     primary: "#6366F1", // Indigo / Chrome
     primaryDark: "#4F46E5",
@@ -211,10 +211,10 @@ export const cromoForgeConfig: AgentConfig = {
     },
     {
       id: "postgres",
-      title: "Containers and PostgreSQL",
-      subtitle: "Day-to-day tasks",
+      title: "Databases and containers",
+      subtitle: "PostgreSQL and Redis",
       description:
-        "List, start, stop and restart Docker containers, see CPU and memory per container and follow logs live, one container or a whole Compose project merged by time. For PostgreSQL, on the host or in a container: connections, size, cache hit ratio, slow and active queries, table bloat and unused indexes, plus cancel, terminate, vacuum, reindex and install-extension actions.",
+        "Start PostgreSQL 17 or Redis 7 next to an app, on its private network, or on its own, listening only on 127.0.0.1 of the server. Removing one removes its data too. List, start, stop and restart Docker containers, see CPU and memory per container and follow logs live, one container or a whole Compose project merged by time. For PostgreSQL, on the host or in a container: connections, size, cache hit ratio, slow and active queries, table bloat and unused indexes, plus cancel, terminate, vacuum, reindex and install-extension actions.",
       colSpan: "col-span-2",
       tag: "Operations",
     },
@@ -287,7 +287,7 @@ export const cromoForgeConfig: AgentConfig = {
     {
       question: "Can the panel run arbitrary commands on my server?",
       answer:
-        "No. The agent only accepts a fixed set of commands: deploy, remove app, proxy, container and PostgreSQL actions, and update. Commands carry an ed25519 signature with an expiry and replay protection. During the current rollout the agent still accepts commands that fail verification and logs a warning.",
+        "No. The agent only accepts a fixed set of commands: deploy, remove app, proxy, start or remove a database, container and PostgreSQL actions, and update. Commands carry an ed25519 signature with an expiry and replay protection. During the current rollout the agent still accepts commands that fail verification and logs a warning.",
     },
     {
       question: "How does it update?",
