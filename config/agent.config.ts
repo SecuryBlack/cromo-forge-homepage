@@ -136,7 +136,7 @@ export const cromoForgeConfig: AgentConfig = {
   binaryName: "cromoforge",
   productTitle: "CromoForge — Deploy agent for your own servers",
   badge: "Open source · Apache 2.0 · Rust",
-  version: "v0.7.2",
+  version: "v0.8.0",
   tagline: "Deploy from GitHub to your own server",
   description:
     "A small Rust agent for the SecuryBlack panel. It builds your GitHub repository on your server with Railpack or your Dockerfile, or runs a one-click template such as Umami or n8n, starts it after a healthcheck and serves it on your domains over HTTPS. It also runs PostgreSQL and Redis, for an app or on their own, and handles Docker containers and day-to-day PostgreSQL tasks. GitHub deploys are in beta and free while the beta lasts.",
@@ -178,7 +178,7 @@ export const cromoForgeConfig: AgentConfig = {
       title: "Your domains, with HTTPS",
       subtitle: "Managed Caddy",
       description:
-        "Installs a Caddy container and routes each web app's domains to it, with certificates from Let's Encrypt. Extra domains can redirect to the main one (www ↔ apex) or serve the app too. Routes go through Caddy's local admin API, never a hand-edited Caddyfile.",
+        "Installs a Caddy container and routes each web app's domains to it, with certificates from Let's Encrypt. Extra domains can redirect to the main one (www ↔ apex) or serve the app too. Routes go through Caddy's local admin API, never a hand-edited Caddyfile. If CupraFlow is installed on the server, it owns Caddy and CromoForge asks it for the routes.",
       colSpan: "col-span-1",
       tag: "Proxy",
     },
