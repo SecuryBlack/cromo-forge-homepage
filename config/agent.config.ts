@@ -136,7 +136,7 @@ export const cromoForgeConfig: AgentConfig = {
   binaryName: "cromoforge",
   productTitle: "CromoForge — Deploy agent for your own servers",
   badge: "Open source · Apache 2.0 · Rust",
-  version: "v0.9.0",
+  version: "v0.10.0",
   tagline: "Deploy from GitHub to your own server",
   description:
     "A small Rust agent for the SecuryBlack panel. It builds your GitHub repository on your server with Railpack or your Dockerfile, or runs a one-click template such as Umami or n8n, starts it after a healthcheck and serves it on your domains over HTTPS. It also runs PostgreSQL and Redis, for an app or on their own, and handles Docker containers and day-to-day PostgreSQL tasks. GitHub deploys are in beta and free while the beta lasts.",
@@ -287,7 +287,7 @@ export const cromoForgeConfig: AgentConfig = {
     {
       question: "Can the panel run arbitrary commands on my server?",
       answer:
-        "No. The agent only accepts a fixed set of commands: deploy, remove app, proxy, start or remove a database, container and PostgreSQL actions, and update. Commands carry an ed25519 signature with an expiry and replay protection. During the current rollout the agent still accepts commands that fail verification and logs a warning.",
+        "No. The agent only accepts a fixed set of commands: deploy, remove app, proxy, start or remove a database, container and PostgreSQL actions, and update. Commands carry an ed25519 signature with an expiry and replay protection. Since 0.10.0 the agent rejects any command whose signature, expiry or nonce does not check out.",
     },
     {
       question: "How does it update?",
